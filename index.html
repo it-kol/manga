@@ -88,7 +88,7 @@
     .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 22px; cursor: pointer; }
     .modal-title { font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--text-primary); }
     .modal-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-    .wx-card { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: var(--radius); background: var(--bg); border: 1px solid var(--border); margin-bottom: 10px; }
+    .wx-card { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: var(--radius); background: var(--bg); border: 1px solid var(--border); margin-bottom: 0; }
     .wx-platform { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .wx-info { flex: 1; }
     .wx-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
@@ -315,7 +315,8 @@
     .benefit-card-purple { background: rgba(124,58,237,0.05); border: 1px solid rgba(124,58,237,0.15); }
 
     /* ===== CONTACT ===== */
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 14px; }
+    .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 800px; margin: 0 auto; }
+    @media(max-width:640px){ .contact-grid { grid-template-columns: 1fr; } }
 
     /* ===== FOOTER ===== */
     footer { background: var(--bg-panel); border-top: 1px solid var(--border); padding: 32px 0; text-align: center; }
@@ -428,7 +429,7 @@
         <span class="grad-pink">不懂日语也能追生肉</span>
       </h1>
       <p class="hero-sub">
-        漫画类达人最值得做的一类工具视频——粉丝痛点强、转化率高、内容天然有画面感。沉浸式翻译漫画翻译功能，让生肉漫画秒变「半官方本地化版」。
+        汉化组迟迟不更？官方没有中文版？用沉浸式翻译，直接在官方漫画站看生肉——AI 翻译叠在气泡里，连拟声词都能译，日漫韩漫都支持。免费用户每月也有 100 张页额度，轻度追几部连载完全够用。
       </p>
       <div class="hero-actions">
         <a href="#messages" class="btn btn-primary btn-lg">查看合作素材</a>
@@ -453,15 +454,15 @@
     <div class="hero-right">
       <!-- 少女漫卡片 -->
       <div class="manga-card manga-card-1">
-        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663405735798/KWpnhPrAm8n63ZeVuzbfoU/shoujo_card_f0d2f9a4.webp" alt="少女漫" onerror="this.src='https://placehold.co/200x280/fce7ef/db2777?text=少女漫'" />
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/FlOatOScebIIguaD.jpg" alt="少女漫 - Cardcaptor Sakura" />
         <div class="manga-card-badge">🌸 少女漫</div>
         <div class="manga-card-label">🇪🇸 ES &nbsp;AI✓&nbsp; ¡Nunca me rendiré!</div>
       </div>
       <!-- 热血漫卡片 -->
       <div class="manga-card manga-card-2">
-        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663405735798/KWpnhPrAm8n63ZeVuzbfoU/action_card_b8e1c2a3.webp" alt="热血漫" onerror="this.src='https://placehold.co/190x265/1a0a12/f9a8d4?text=热血漫'" />
-        <div class="manga-card-badge" style="background:rgba(249,115,22,0.9)">⚡ 热血漫</div>
-        <div class="manga-card-label">🇯🇵 原文&nbsp; 俺は絶対に諦めない！</div>
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/uWHuuNUAcSacNhpi.jpg" alt="韩漫 - Solo Leveling" />
+        <div class="manga-card-badge" style="background:rgba(249,115,22,0.9)">🇰🇷 韩漫</div>
+        <div class="manga-card-label">🇰🇷 한국어 → 中文 AI✓</div>
       </div>
       <!-- AI badge -->
       <div class="ai-badge">✦A</div>
@@ -713,8 +714,9 @@
       <h3 style="font-size:20px;font-weight:900;color:var(--text-primary)">方向建议（随便选 1–2 条用就行）</h3>
     </div>
     <div class="guide-tabs reveal">
-      <button class="guide-tab active" onclick="switchGuide(0,this)">🇯🇵 方向 A</button>
-      <button class="guide-tab" onclick="switchGuide(1,this)">🌐 方向 B</button>
+      <button class="guide-tab active" onclick="switchGuide(0,this)">🇯🇵 方向 A · 日漫</button>
+      <button class="guide-tab" onclick="switchGuide(1,this)">🇰🇷 方向 B · 韩漫</button>
+      <button class="guide-tab" onclick="switchGuide(2,this)">💡 方向 C · 测评对比</button>
     </div>
 
     <div class="guide-panel active" id="guide-0">
@@ -746,29 +748,58 @@
       </div>
     </div>
 
-    <div class="guide-panel" id="guide-1">
+    <div class="guide-panel" id="guide-2" style="display:none">
       <div class="guide-card reveal">
         <div class="guide-card-head">
-          <div class="guide-type-badge" style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.22);color:var(--purple)">🌐 方向 B</div>
-          <div class="guide-title">「韩漫 / 美漫 / 国漫多平台一键看懂」</div>
-          <div class="guide-subtitle">适合：平时就会在多个站点看漫画、安利冷门作品的博主 · 中短视频 90–180 秒</div>
+          <div class="guide-type-badge" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.22);color:#059669">💡 方向 C</div>
+          <div class="guide-title">「汉化组不更的生肉，我用这个工具自己看」</div>
+          <div class="guide-subtitle">适合：工具测评 / 实用工具分享类账号 · 短视频 60–90 秒</div>
         </div>
         <div class="guide-body">
           <div class="guide-section">
             <div class="guide-section-label">内容结构建议</div>
             <div class="guide-tips">
-              <div class="guide-tip"><div class="guide-tip-icon">①</div><span>展示你常用的几个漫画站（比如一个日漫 + 一个韩漫 + 一个英文漫画站）</span></div>
-              <div class="guide-tip"><div class="guide-tip-icon">②</div><span>每个网站都演示：不开翻译 vs 开启沉浸式漫画翻译（PC 或 App 内置浏览器录屏均可）</span></div>
-              <div class="guide-tip"><div class="guide-tip-icon">③</div><span>结合自己的实际使用场景聊一两句：以前看不懂只能看图猜剧情；现在可以先用免费额度试着追，真喜欢再考虑 Pro 爆刷</span></div>
+              <div class="guide-tip"><div class="guide-tip-icon">①</div><span>开头直接抛出痛点：「汉化组迟迟不更、官方没有中文版——你是怎么处理的？」</span></div>
+              <div class="guide-tip"><div class="guide-tip-icon">②</div><span>展示不开翻译的样子：漫画页满屏日文/韩文，完全看不懂</span></div>
+              <div class="guide-tip"><div class="guide-tip-icon">③</div><span>开启沉浸式翻译漫画功能，对比前后：同一页变成「原图 + 中文译文叠在气泡里」</span></div>
+              <div class="guide-tip"><div class="guide-tip-icon">④</div><span>强调一个细节：拟声词翻译效果（「ドカン！」→「轰！」），让粉丝感受到「真的在看漫画」而不是看机翻</span></div>
             </div>
           </div>
           <div class="guide-section">
             <div class="guide-section-label">参考话术（可自由改）</div>
-            <div class="guide-quote">「我追漫的平台很杂，有 Pixiv、有 WEBTOON、有少年 Jump+，以前每个平台都要找不同的汉化资源——现在装了沉浸式翻译，一个插件搞定所有平台，翻译叠在原图上，排版完全不崩，就像在看官方中文版。」</div>
+            <div class="guide-quote">「我追的这部漫汉化组一直在鹽，官方又没有中文版——后来发现用沉浸式翻译可以直接在官方网站看生肉，AI 翻译叠在气泡里，连拟声词都能译，感觉就像在看「半官方本地化版」。免费用户每月也有 100 张页额度，轻度追几部连载完全够用。」</div>
           </div>
           <div class="guide-section">
             <div class="guide-section-label">结尾 CTA</div>
-            <div class="guide-quote">「免费版每月 100 张页额度，轻度追漫完全够用，官网链接在评论区，还有粉丝专属折扣码，如果你追漫量很大想升级 Pro，可以用我的码打九折。」</div>
+            <div class="guide-quote">「Chrome 商店搜「沉浸式翻译」就能装，官网链接放评论区了，还有粉丝专属 9 折折扣码和周卡抽奖，评论区见！」</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-panel" id="guide-1">
+      <div class="guide-card reveal">
+        <div class="guide-card-head">
+          <div class="guide-type-badge" style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.22);color:var(--purple)">🇰🇷 方向 B</div>
+          <div class="guide-title">「韩漫生肉不用等汉化了，WEBTOON 直接看」</div>
+          <div class="guide-subtitle">适合：主要看韩漫 / 条漫 / WEBTOON 的博主 · 短视频 60–90 秒</div>
+        </div>
+        <div class="guide-body">
+          <div class="guide-section">
+            <div class="guide-section-label">内容结构建议</div>
+            <div class="guide-tips">
+              <div class="guide-tip"><div class="guide-tip-icon">①</div><span>打开 WEBTOON 或 Naver 漫画，展示韩文原版：满屏韩文，完全看不懂</span></div>
+              <div class="guide-tip"><div class="guide-tip-icon">②</div><span>开启沉浸式翻译漫画功能，展示韩文气泡变成中文的效果（条漫竖向滚动，翻译叠在每格上）</span></div>
+              <div class="guide-tip"><div class="guide-tip-icon">③</div><span>随手翻几格，读两句翻得自然的台词，顺便说一下免费额度够轻度追几部</span></div>
+            </div>
+          </div>
+          <div class="guide-section">
+            <div class="guide-section-label">参考话术（可自由改）</div>
+            <div class="guide-quote">「《Solo Leveling》《True Beauty》这些韩漫我一直想追原版，但韩文完全不懂——装了沉浸式翻译之后，直接在 WEBTOON 官网上看，AI 翻译叠在每一格里，条漫竖着滚下去，翻译也跟着来，感觉就像在看官方中文版。免费版每月 100 张页额度，轻度追几部完全够。」</div>
+          </div>
+          <div class="guide-section">
+            <div class="guide-section-label">结尾 CTA</div>
+            <div class="guide-quote">「Chrome 商店搜「沉浸式翻译」就能装，官网链接放评论区了，还有粉丝专属 9 折折扣码，评论区见！」</div>
           </div>
         </div>
       </div>
@@ -935,44 +966,80 @@
   </div>
 </section>
 
+<!-- ===== VIDEO TUTORIAL ===== -->
+<section id="video-tutorial" style="background:#fff8fb">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <div class="sec-label">Tutorial Video</div>
+      <h2 class="sec-title">看一遍就会用：30 秒漫画翻译教程</h2>
+      <p class="sec-desc">就是点右边的「 M 」按钮，漫画气泡里的外文就变成中文了。下面这个视频展示了完整操作流程。</p>
+    </div>
+      <div class="reveal" style="max-width:800px;margin:0 auto">
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 8px 32px rgba(219,39,119,0.15)">
+        <iframe
+          src="//player.bilibili.com/player.html?bvid=BV1U6421Z7ji&page=1&high_quality=1&danmaku=0&autoplay=0"
+          title="沉浸式翻译漫画翻译功能教程"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          scrolling="no"
+          frameborder="0">
+        </iframe>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;justify-content:center">
+        <div style="background:#fff0f6;border:1px solid rgba(219,39,119,0.18);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--text-secondary)">
+          <strong style="color:var(--pink)">📱 手机端</strong>：沉浸式翻译 App 内置浏览器打开漫画站，点右下角「 M 」按钮
+        </div>
+        <div style="background:#f5f0ff;border:1px solid rgba(124,58,237,0.18);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--text-secondary)">
+          <strong style="color:var(--purple)">💻 电脑端</strong>：安装浏览器插件后，漫画页面右下角会出现「漫画翻译」入口
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== CONTACT ===== -->
 <section id="contact">
   <div class="inner">
     <div class="sec-head reveal">
       <div class="sec-label">Contact</div>
       <h2 class="sec-title">联系我们</h2>
-      <p class="sec-desc">根据你主要创作的平台，直接添加对应同事的微信，说明平台和粉丝规模，我们会尽快回复。</p>
+      <p class="sec-desc">添加对应负责人微信，说明你的平台、粉丝规模，并附上账号链接，我们会在 1 个工作日内回复。</p>
     </div>
     <div class="contact-grid reveal">
+      <!-- Sherry 小红书 -->
       <div class="wx-card">
-        <div class="wx-platform" style="background:#fff1f2;overflow:hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Xiaohongshu_logo.svg/512px-Xiaohongshu_logo.svg.png" alt="小红书" style="width:100%;height:100%;object-fit:contain;padding:4px" onerror="this.parentNode.innerHTML='🍠'" /></div>
+        <div class="wx-platform" style="background:linear-gradient(135deg,#ff2442,#c0001a);overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:20px">📕</span></div>
         <div class="wx-info">
           <div class="wx-name">Sherry · 小红书负责人</div>
-          <div class="wx-id">nings102</div>
+          <div class="wx-id" style="font-size:12px">微信：nings102</div>
         </div>
         <button class="wx-copy" onclick="copyWx(this,'nings102')">复制微信号</button>
       </div>
+      <!-- 马丽 抖音 -->
       <div class="wx-card">
-        <div class="wx-platform" style="background:#000;overflow:hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/TikTok_logo.svg/512px-TikTok_logo.svg.png" alt="抖音" style="width:100%;height:100%;object-fit:contain;padding:4px" onerror="this.parentNode.innerHTML='🎵'" /></div>
+        <div class="wx-platform" style="background:#000000;overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:20px">🎵</span></div>
         <div class="wx-info">
           <div class="wx-name">马丽 · 抖音负责人</div>
-          <div class="wx-id">ma314227840</div>
+          <div class="wx-id" style="font-size:12px">微信：ma314227840</div>
         </div>
         <button class="wx-copy" onclick="copyWx(this,'ma314227840')">复制微信号</button>
       </div>
+      <!-- 慧颖 B站/视频号 -->
       <div class="wx-card">
-        <div class="wx-platform" style="background:#00a1d6;overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:14px;font-weight:900">B</span></div>
+        <div class="wx-platform" style="background:linear-gradient(135deg,#00a1d6,#0078b4);overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:18px;font-weight:900">B</span></div>
         <div class="wx-info">
           <div class="wx-name">慧颖 · B站 / 视频号负责人</div>
-          <div class="wx-id">Goldfish-74</div>
+          <div class="wx-id" style="font-size:12px">微信：Goldfish-74</div>
         </div>
         <button class="wx-copy" onclick="copyWx(this,'Goldfish-74')">复制微信号</button>
       </div>
+      <!-- Yara 微博 -->
       <div class="wx-card">
-        <div class="wx-platform" style="background:#ff6900;overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:11px;font-weight:900">微博</span></div>
+        <div class="wx-platform" style="background:linear-gradient(135deg,#e6162d,#c0001a);overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:13px;font-weight:800">微博</span></div>
         <div class="wx-info">
           <div class="wx-name">Yara · 微博负责人</div>
-          <div class="wx-id">z15201126125</div>
+          <div class="wx-id" style="font-size:12px">微信：z15201126125</div>
         </div>
         <button class="wx-copy" onclick="copyWx(this,'z15201126125')">复制微信号</button>
       </div>
@@ -1002,26 +1069,28 @@
   <div class="modal-box" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal('collabModal')">×</button>
     <div class="modal-title">🤝 我要合作</div>
-    <div class="modal-sub">根据你主要创作平台，直接添加对应同事的微信，说明你的平台和粉丝规模，并发送你的账号链接，我们会尽快回复。</div>
+    <div class="modal-sub">添加对应负责人微信，说明你的平台、粉丝规模，并附上账号链接，我们会在 1 个工作日内回复。</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
     <div class="wx-card">
-      <div class="wx-platform" style="background:#fff1f2;overflow:hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Xiaohongshu_logo.svg/512px-Xiaohongshu_logo.svg.png" alt="小红书" style="width:100%;height:100%;object-fit:contain;padding:4px" onerror="this.parentNode.innerHTML='🍠'" /></div>
-      <div class="wx-info"><div class="wx-name">Sherry · 小红书负责人</div><div class="wx-id">nings102</div></div>
+      <div class="wx-platform" style="background:linear-gradient(135deg,#ff2442,#c0001a);overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:16px">📕</span></div>
+      <div class="wx-info"><div class="wx-name">Sherry · 小红书负责人</div><div class="wx-id" style="font-size:12px">微信：nings102</div></div>
       <button class="wx-copy" onclick="copyWx(this,'nings102')">复制微信号</button>
     </div>
     <div class="wx-card">
-      <div class="wx-platform" style="background:#000;overflow:hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/TikTok_logo.svg/512px-TikTok_logo.svg.png" alt="抖音" style="width:100%;height:100%;object-fit:contain;padding:4px" onerror="this.parentNode.innerHTML='🎵'" /></div>
-      <div class="wx-info"><div class="wx-name">马丽 · 抖音负责人</div><div class="wx-id">ma314227840</div></div>
+      <div class="wx-platform" style="background:#000000;overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:16px">🎵</span></div>
+      <div class="wx-info"><div class="wx-name">马丽 · 抖音负责人</div><div class="wx-id" style="font-size:12px">微信：ma314227840</div></div>
       <button class="wx-copy" onclick="copyWx(this,'ma314227840')">复制微信号</button>
     </div>
     <div class="wx-card">
-      <div class="wx-platform" style="background:#00a1d6;overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:14px;font-weight:900">B</span></div>
-      <div class="wx-info"><div class="wx-name">慧颖 · B站 / 视频号负责人</div><div class="wx-id">Goldfish-74</div></div>
+      <div class="wx-platform" style="background:linear-gradient(135deg,#00a1d6,#0078b4);overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:18px;font-weight:900">B</span></div>
+      <div class="wx-info"><div class="wx-name">慧颖 · B站 / 视频号负责人</div><div class="wx-id" style="font-size:12px">微信：Goldfish-74</div></div>
       <button class="wx-copy" onclick="copyWx(this,'Goldfish-74')">复制微信号</button>
     </div>
     <div class="wx-card">
-      <div class="wx-platform" style="background:#ff6900;overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:11px;font-weight:900">微博</span></div>
-      <div class="wx-info"><div class="wx-name">Yara · 微博负责人</div><div class="wx-id">z15201126125</div></div>
+      <div class="wx-platform" style="background:linear-gradient(135deg,#e6162d,#c0001a);overflow:hidden;display:flex;align-items:center;justify-content:center"><span style="color:white;font-size:13px;font-weight:800">微博</span></div>
+      <div class="wx-info"><div class="wx-name">Yara · 微博负责人</div><div class="wx-id" style="font-size:12px">微信：z15201126125</div></div>
       <button class="wx-copy" onclick="copyWx(this,'z15201126125')">复制微信号</button>
+    </div>
     </div>
   </div>
 </div>
@@ -1092,7 +1161,19 @@
 
   // Guide tabs
   function switchGuide(idx, btn) {
-    document.querySelectorAll('.guide-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+    // tab 0 = guide-0 (日漫), tab 1 = guide-1 (韩漫), tab 2 = guide-2 (测评对比)
+    const panelIds = ['guide-0','guide-1','guide-2'];
+    panelIds.forEach((id,i) => {
+      const p = document.getElementById(id);
+      if(!p) return;
+      if(i === idx) {
+        p.classList.add('active');
+        p.style.display = '';
+      } else {
+        p.classList.remove('active');
+        p.style.display = 'none';
+      }
+    });
     document.querySelectorAll('.guide-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
   }
 
@@ -1100,12 +1181,13 @@
   function openModal(id) { document.getElementById(id).classList.add('open'); }
   function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-  // Copy WeChat
+  // Copy email
   function copyWx(btn, id) {
+    const orig = btn.textContent;
     navigator.clipboard.writeText(id).then(() => {
       btn.textContent = '已复制 ✓';
       btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = '复制微信号'; btn.classList.remove('copied'); }, 2000);
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
     });
   }
 
